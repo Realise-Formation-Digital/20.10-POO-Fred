@@ -1,13 +1,13 @@
 <?php
 
-  // Définit les constantes de connexion.
-  define("HOST", "maria_db");
-  define("DATABASE", "combatgentil_db");
-  define("USER", "CF");
-  define("PASSWORD", "digital2021");
+  require __DIR__ . '/vendor/autoload.php';
+
+  // Récupère les variables du fichier .env
+  $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+  $dotenv->load();
 
   // Crée l'objet database.
-  $db = new Database(HOST, DATABASE, USER, PASSWORD);
+  $db = new Database($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
 
   // Vérifie le content type de la variable $_SERVER
   $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
