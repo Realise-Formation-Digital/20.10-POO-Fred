@@ -19,17 +19,15 @@
   display: none;
 }
 
-.button-left {
+.action-button {
+  display: flex;
   position: absolute;
   left: 100px;
   top: 200px;
-  display: none;
 }
 
-.button-right {
-  position: absolute;
-  left: 200px;
-  top: 200px;
+.action-button button {
+  margin: 0 1em;
   display: none;
 }
 
@@ -116,6 +114,10 @@ h1 {
 #inventory-pnj button,
 #inventory button {
   padding: 0 1em;
+}
+
+#inventory.hide .equip {
+  display: none;
 }
 
 #background {

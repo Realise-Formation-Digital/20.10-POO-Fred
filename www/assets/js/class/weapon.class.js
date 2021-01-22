@@ -40,14 +40,26 @@ const WEAPONTYPES = [
     name: 'Epée magique',
     str: 20,
     sta: 8,
-    price: 60
+    price: 100
   },
   {
     name: 'Bouclier magique',
     str: 4,
     sta: 20,
-    price: 70
-  }
+    price: 150
+  },
+  {
+    name: 'Epée de Légende',
+    str: 40,
+    sta: 15,
+    price: 1000
+  },
+  {
+    name: 'Arc de lumière',
+    str: 50,
+    sta: 2,
+    price: 200
+  },  
 ]
 
 export default class Weapon {
@@ -72,9 +84,17 @@ export default class Weapon {
   /**
    * Séléctionne aléatoirement le type d'arme.
    */
-  random(onlyReturnWeapons = false) {
-    const type = onlyReturnWeapons ? Math.floor(Math.random() * 8) : Math.floor(Math.random() * 12);
-    if (type < 8) {
+  random(persoXp, onlyReturnWeapons = false) {
+    const maxXp = Math.ceil(persoXp / 4) < WEAPONTYPES.length - 1 ? Math.ceil(persoXp / 4) : WEAPONTYPES.length - 1;
+    const type = Math.floor(Math.random() * maxXp);
+
+    // Si l'option onlyReturnWeapons est fausse, permet aléatoirement de ne pas retourner d'arme.
+    if (!onlyReturnWeapons) {
+      const hasWeapon = Math.floor(Math.random() * 2);
+      if (hasWeapon === 1) {
+        this.setWeaponType(type);
+      }
+    } else {
       this.setWeaponType(type);
     }
   }

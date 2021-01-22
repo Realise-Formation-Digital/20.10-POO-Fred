@@ -69,6 +69,7 @@ export default class Player extends Perso {
     this._str = 1;
     this._sta = 1;
     this._gold = 20;
+    this._inventory = [];
 
     // Ajoute une épée en bois à l'inventaire.
     const weapon = new Weapon();
@@ -182,6 +183,27 @@ export default class Player extends Perso {
     // Ajoute l'objet Player en cours à l'observable.
     Player.player$.next(this);
   }
+  
+  /**
+   * Démarrer la vente avec le PNJ.
+   */
+  async sellWeaponToPnj(index) {
+    // Get the weapon.
+    const weaponFound = this._inventory.filter((i, k) => {
+      if (index === k) {
+        return i;
+      }
+    })[0];
+
+    // Add 50% price of weapon to the player.
+    this.addGold(Math.ceil(weaponFound.weapon.getPrice() / 2));
+
+    // Remove weapon from inventory
+    this._inventory.splice(index, 1);
+
+    // Ajoute l'objet Player en cours à l'observable.
+    Player.player$.next(this);
+  }
 
   /**
    * Ajoute des pièces d'or.
@@ -208,6 +230,15 @@ export default class Player extends Perso {
    */
   addXp() {
     this._xp++;
+    // Augmente la force du joueur.
+    if (this._xp % 3 == 0) {
+      this._str++;
+    }
+
+    // Augmente l'endurance du joueur.
+    if (this._xp % 3 == 1) {
+      this._sta++;
+    }
 
     // Ajoute l'objet Player en cours à l'observable.
     Player.player$.next(this);

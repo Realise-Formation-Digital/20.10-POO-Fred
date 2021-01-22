@@ -90,6 +90,13 @@ document.getElementById("action-flee").addEventListener("click", () => {
   })();
 });
 
+// Clic sur "Action leave" pour quitter le PNJ.
+document.getElementById("action-leave").addEventListener("click", () => {
+  (async () => {
+    await game.leavePNJ();
+  })();
+});
+
 // Clic sur "Action attack" pour lancer l'attaque du joueur face à un monstre.
 document.getElementById("action-attack").addEventListener("click", () => {
   (async () => {
@@ -107,7 +114,7 @@ document.getElementById("action-buy").addEventListener("click", () => {
 // Clic sur "Action sell" pour lancer la demander de vente du joueur face à un PNJ.
 document.getElementById("action-sell").addEventListener("click", () => {
   (async () => {
-    await game.sellToPnj();
+    await game.selectWeaponToSell();
   })();
 });
 
@@ -121,13 +128,15 @@ Player.player$.subscribe(player => {
     player.getInventory().map((item, key) => {
       const li = document.createElement("li");
       li.classList.add("list-group-item");
+      li.setAttribute("id", "itemselect-" + key);
       li.appendChild(document.createTextNode(item.weapon.getName() + ' '));
 
       // Pour chaque arme qui n'est pas équipée, affiche un bouton permettant d'équiper l'arme au joueur.
       if (!item.equiped) {
         let button = document.createElement("button");
         button.classList.add("btn");
-        button.classList.add("btn-secondary")
+        button.classList.add("btn-secondary");
+        button.classList.add("equip");
         button.appendChild(document.createTextNode("Equiper"));
         button.setAttribute("id", "inventory-" + key);
 
@@ -150,7 +159,25 @@ Player.player$.subscribe(player => {
     document.getElementById("player-xp").innerHTML = player.getXp();
     document.getElementById("player-str").innerHTML = player.getStr() + (weaponStr ? ' (+' + weaponStr + ')' : '');
     document.getElementById("player-sta").innerHTML = player.getSta() + (weaponSta ? ' (+' + weaponSta + ')' : '');
-    document.getElementById("player-gold").innerHTML = player.getGold();
+    document.getElementById("player-gold").innerHTML = player.getGold() + " ";
     document.getElementById("player-weapon").innerHTML = player.getWeapon().getName();
+
+    if (player.getGold() > 100) {
+      let buttonAddXP = document.createElement("button");
+      buttonAddXP.classList.add("btn");
+      buttonAddXP.classList.add("btn-secondary");
+      buttonAddXP.appendChild(document.createTextNode("+1 XP"));
+      buttonAddXP.setAttribute("id", "addXP");
+      
+      // Ajoute un listener sur le bouton permettant de cliquer dessus.
+      buttonAddXP.addEventListener('click', (event) => {
+
+        // Ajoute un point d'expérience au joueur. 
+        player.removeGold(100);
+        player.addXp()
+      });
+
+      document.getElementById("player-gold").appendChild(buttonAddXP);
+    }
   }
 });

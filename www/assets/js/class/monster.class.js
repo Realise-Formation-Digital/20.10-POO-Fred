@@ -15,14 +15,22 @@ export default class Monster extends Perso {
   /**
    * Constructeur du monstre.
    */
-  constructor() {
+  constructor(playerXp) {
     super();
-    this._xp = Math.floor(Math.random() * 50) + 1;
+    // Détermine le nombre de point d'expérience en fonction du niveau du joueur.
+    const maxXp = ((playerXp + 1) * 5) <= 50 ? (playerXp + 1) * 5 : 50;
+    this._xp = Math.floor(Math.random() * maxXp);
+
+    // Créé les caractéristiques du monstres en fonction du nombre de points d'expérience.
     this._str = Math.floor(Math.random() * this._xp) + 1;
     this._sta = Math.floor(Math.random() * this._xp) + 1;
+    this._gold = Math.floor(Math.random() * this._xp) + 5;
+
+    // Sélectionne l'arme en fonction du nombre de points d'expérience.
     this.#weapon = new Weapon();
-    this.#weapon.random();
-    this._gold = Math.floor(Math.random() * 50) + 1;
+    this.#weapon.random(this._xp);
+
+    // Affiche le monstre.
     this.show(this._stand, true);
   }
 

@@ -35,15 +35,16 @@
   <img id="monster-attack" class="monster" src="assets/img/monster_attack.gif" />
   <img id="pnj-stand" class="pnj" src="assets/img/pnj_stand.png" />
 
-  <button id="action-attack" class="button-left btn btn-primary">Attaquer</button>
-  <button id="action-flee" class="button-right btn btn-primary">Fuir</button>
-  <button id="action-buy" class="button-left btn btn-primary">Acheter</button>
-  <button id="action-sell" class="button-right btn btn-primary">Vendre</button>
-  <button id="action-next" class="button-left btn btn-primary">Suivant</button>
+  <div class="action-button">
+    <button id="action-attack" class="btn btn-primary">Attaquer</button>
+    <button id="action-flee" class="btn btn-primary">Fuir</button>
+    <button id="action-buy" class="btn btn-primary">Acheter</button>
+    <button id="action-sell" class="btn btn-primary">Vendre</button>
+    <button id="action-next" class="btn btn-primary">Suivant</button>
+    <button id="action-leave" class="btn btn-primary">Partir</button>
+  </div>
 
-  <ul class="list-group" id="inventory-pnj">
-    <li class="list-group-item">Fred</li>
-  </ul>
+  <ul class="list-group" id="inventory-pnj"></ul>
   
   <div id="message"></div>
   
@@ -51,7 +52,7 @@
     <div class="row mb-3">
       <div class="col-6">
         <div class="row mb-3">
-          <div class="col-6">Life</div>
+          <div class="col-6">Vie</div>
           <div id="player-life" class="col-6"></div>
         </div>
         <div class="row mb-3">
@@ -59,19 +60,19 @@
           <div id="player-xp" class="col-6"></div>
         </div>
         <div class="row mb-3">
-          <div class="col-6">Strength</div>
+          <div class="col-6">Force</div>
           <div id="player-str" class="col-6"></div>
         </div>
         <div class="row mb-3">
-          <div class="col-6">Stamina</div>
+          <div class="col-6">Endurance</div>
           <div id="player-sta" class="col-6"></div>
         </div>
         <div class="row mb-3">
-          <div class="col-6">Gold</div>
+          <div class="col-6">Pièce d'or</div>
           <div id="player-gold" class="col-6"></div>
         </div>
         <div class="row mb-3">
-          <div class="col-6">Equiped weapon</div>
+          <div class="col-6">Arme équipée</div>
           <div id="player-weapon" class="col-6"></div>
         </div>
       </div>
