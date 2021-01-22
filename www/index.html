@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://unpkg.com/rxjs@6.4.0/bundles/rxjs.umd.min.js"></script>
+  <script type="module" src="./assets/js/main.js"></script>
+</head>
+<body>
+
+  <div id="intro">
+    <div id="start-page">
+      <h1 id="action-start">Commencer une nouvelle partie</h1>
+      <h1 id="action-list">Charger une partie existante</h1>
+    </div>
+    <div id="load-page">
+      <h1 id="action-list">Liste des sauvegardes existantes</h1>
+      <ul class="list-group" id="list-saved"></ul>
+      <button class="btn btn-primary" id="action-startpage">Retour à la page d'accueil</button>
+    </div>
+    <div id="save-page">
+      <h1 id="action-list">Sauver la partie</h1>
+      <label>Entrez un nom</label>
+      <input type="text" id="save-name"></input>
+      <button class="btn btn-primary" id="action-save">Sauvegarder</button>
+    </div>
+  </div>
+
+  <img id="background" src="assets/img/background.png" />
+  <img id="player-walk" class="perso" src="assets/img/player_walk.gif" />
+  <img id="player-attack" src="assets/img/player_attack.gif" />
+  <img id="player-stand" class="perso" src="assets/img/player_stand.png" />
+  <img id="monster-stand" class="monster" src="assets/img/monster_stand.png" />
+  <img id="monster-attack" class="monster" src="assets/img/monster_attack.gif" />
+  <img id="pnj-stand" class="pnj" src="assets/img/pnj_stand.png" />
+
+  <button id="action-attack" class="button-left btn btn-primary">Attaquer</button>
+  <button id="action-flee" class="button-right btn btn-primary">Fuir</button>
+  <button id="action-buy" class="button-left btn btn-primary">Acheter</button>
+  <button id="action-sell" class="button-right btn btn-primary">Vendre</button>
+  <button id="action-next" class="button-left btn btn-primary">Suivant</button>
+
+  <ul class="list-group" id="inventory-pnj">
+    <li class="list-group-item">Fred</li>
+  </ul>
+  
+  <div id="message"></div>
+  
+  <div class="player">
+    <div class="row mb-3">
+      <div class="col-6">
+        <div class="row mb-3">
+          <div class="col-6">Life</div>
+          <div id="player-life" class="col-6"></div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6">XP</div>
+          <div id="player-xp" class="col-6"></div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6">Strength</div>
+          <div id="player-str" class="col-6"></div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6">Stamina</div>
+          <div id="player-sta" class="col-6"></div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6">Gold</div>
+          <div id="player-gold" class="col-6"></div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6">Equiped weapon</div>
+          <div id="player-weapon" class="col-6"></div>
+        </div>
+      </div>
+      <div class="col-6">
+        <h2>Inventaires</h2>
+        <ul class="list-group" id="inventory"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-button">
+    <button id="action-savepage" class="btn btn-primary">Sauvegarder la partie</button>
+    <button id="action-exit" class="btn btn-primary">Quitter la partie</button>
+  </div>
+
+</body>
+</html>
